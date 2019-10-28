@@ -11,6 +11,7 @@
     </template>
     <script>
     import EventCard from '@/components/EventCard.vue'
+    import { mapState } from 'vuex'  // <--- To map event
     export default {
       head() {
         return {
@@ -29,12 +30,9 @@
       // },
       // both is same as above
       // Using ES6 destructuring we can simplify this to:
-      async asyncData({ $axios, error }) {
+      async fetch({ store, error }) {
         try {
-          const { data } = await $axios.get('http://localhost:3000/events')
-          return {
-            events: data
-          }
+          await store.dispatch('events/fetchEvents')
         } catch (e) {
           error({
             statusCode: 503,
@@ -44,6 +42,9 @@
       },
       components: {
         EventCard
-      }
+      },
+      computed: mapState({
+        events: state => state.events.events
+      })
     }
     </script>
