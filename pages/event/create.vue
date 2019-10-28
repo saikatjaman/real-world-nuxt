@@ -1,14 +1,14 @@
 <template>
-  <div>
-    <h1>Events</h1>
-  </div>
+    <div>
+        <h1>Create An Event</h1>
+    </div>
 </template>
  <script>
     export default {
       head() {
         return {
-          title: 'Event Listing'
+          title: 'Create an Event'
         }
       }
     }
-  </script>
+</script>
